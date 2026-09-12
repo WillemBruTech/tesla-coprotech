@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<title>Tesla OAuth callback</title>
+<style>
+  body { font-family: system-ui, sans-serif; max-width: 640px; margin: 60px auto; padding: 0 20px; color: #222; }
+  code { background: #f2f2f2; padding: 2px 6px; border-radius: 4px; word-break: break-all; }
+  .box { background: #f8f8f8; border: 1px solid #ddd; border-radius: 8px; padding: 20px; margin-top: 20px; }
+</style>
+</head>
+<body>
+  <h1>Tesla login callback</h1>
+  <p>Deze pagina vangt de <code>code</code> op die Tesla na het inloggen terugstuurt. Kopieer de waarde hieronder en gebruik ze in je token-uitwisselscript op de Raspberry Pi.</p>
+  <div class="box">
+    <div><strong>code:</strong></div>
+    <div id="code">(geen code gevonden in de URL)</div>
+    <div style="margin-top:12px;"><strong>state:</strong></div>
+    <div id="state">-</div>
+  </div>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get('code');
+    const state = params.get('state');
+    if (code) document.getElementById('code').innerHTML = '<code>' + code + '</code>';
+    if (state) document.getElementById('state').innerHTML = '<code>' + state + '</code>';
+  </script>
+</body>
+</html>
